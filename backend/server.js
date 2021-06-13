@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 // const data = require("./data");
@@ -6,7 +7,10 @@ const productRouter = require("./routers/productRouter");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect("mongodb://localhost:27017/react-ecommerce", {
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

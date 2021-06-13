@@ -25,3 +25,4 @@ yarn-error.log*
 
 images
 package-lock.json
+rest.http
