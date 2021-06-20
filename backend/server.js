@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 // const data = require("./data");
 const userRouter = require("./routers/userRouter");
 const productRouter = require("./routers/productRouter");
+const orderRouter = require("./routers/orderRouter");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -22,6 +23,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/orders", orderRouter);
 
 // app.get("/api/products/:id", (req, res) => {
 //   const product = data.products.find((x) => x._id === req.params.id);
@@ -36,7 +38,7 @@ app.get("/", (req, res) => {
   res.send("Server is Ready");
 });
 
-app.use((error, req, res, next) => {
+app.use((error, req, res) => {
   res.status(500).send({ message: error.message });
 });
 
